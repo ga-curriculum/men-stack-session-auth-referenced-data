@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=location.name%></title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%=location.name%> in <%=location.city%></h1>
+
+    <% if (location.owner._id.equals(user._id)) { %>
+      <h2>You own this!</h2>
+      <a href="/locations/<%=location._id%>/edit">Edit this location</a>
+      <form action="/locations/<%=location._id%>?_method=DELETE" method="POST">
+          <button type="submit">Delete this location</button>
+      </form>
+    <% } else { %>
+      <h2>You don't own this, <%= location.owner.username %> does!</h2>
+    <% } %>
+</body>
+</html>
